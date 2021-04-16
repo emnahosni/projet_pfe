@@ -18,4 +18,14 @@ class Booking extends Model
     {
         return $this->hasOne('App\Course');
     }
+
+    public function scopeComingBookings($query)
+    {
+        return $query->where('booking_date', '>=', now());
+    }
+
+    public function scopePassedBookings($query)
+    {
+        return $query->where('booking_date', '<', now());
+    }
 }

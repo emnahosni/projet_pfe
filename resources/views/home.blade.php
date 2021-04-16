@@ -16,6 +16,15 @@
 
                     You are logged in! client
                 </div>
+                <div class="card-body">
+                <h2>List des vehicules disponibles</h2>
+                    <ul class="list-group">    
+                        @foreach($vehicules as $vehicule)
+                            <li class="list-group-item">{{$vehicule->marque}}<span class="badge">12</span></li>
+                        @endforeach
+                    </ul>
+                </div>
+                
             </div>
         </div>
     </div>

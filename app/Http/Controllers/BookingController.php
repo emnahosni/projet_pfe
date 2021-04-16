@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -14,7 +15,16 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        //$bookings = Booking::all();
+        //return $bookings ;
+        //$bookings=Auth::user()->bookings()->get();
+        //return view('booking.index')->with('bookings', $bookings);
+        $comingBookings = Auth::user()->bookings()->comingBookings()->orderBy('booking_date')->get();
+        $passedBookings = Auth::user()->bookings()->passedBookings()->orderBy('booking_date', 'desc')->get();
+        return view('booking.index', [
+            'comingBookings' => $comingBookings,
+            'passedBookings' => $passedBookings
+        ]);
     }
 
     /**
